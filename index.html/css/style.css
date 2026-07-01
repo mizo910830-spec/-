@@ -1,0 +1,219 @@
+body {
+    background: linear-gradient(-45deg, rgb(119, 207, 238), rgb(82, 250, 146), #2ed8ad, rgb(21, 193, 241));
+    background-size: 600% 600%;
+    animation: ni123 10s ease infinite;
+    font-family: "Microsoft JhengHei", sans-serif;
+    margin: 0; 
+    padding: 20px 6px; 
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+
+@keyframes ni123 {
+    0% { background-position: 0% 0%; }
+    25% { background-position: 50% 100%; }
+    50% { background-position: 100% 50%; }
+    75% { background-position: 0% 50%; }
+    100% { background-position: 0% 0%; }
+}
+
+/* ==========================================================================
+   2. 容器
+   ========================================================================== */
+.love-card {
+    padding: 40px 24px; 
+    background-color: #fffaf0; 
+    border: 5px double #f5666d; 
+    border-radius: 4px; 
+    box-shadow: inset 0 0 15px rgba(245, 102, 109, 0.1), 0 4px 12px rgba(0,0,0,0.05);
+    animation: letterFloat 4s ease-in-out infinite alternate;
+    
+    width: 97%; 
+    margin: 0 auto; 
+    box-sizing: border-box; 
+}
+
+@keyframes letterFloat {
+    0% { transform: translateY(0px) scale(1); }
+    100% { transform: translateY(-5px) scale(1.01); }
+}
+
+/* ==========================================================================
+   3. 標題與大頭貼排版
+   ========================================================================== */
+h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    gap: 15px;               
+    margin: 0 0 25px 0;
+}
+
+.h1-text {
+    color: #ffffff; 
+    font-size: 38px;
+    font-weight: 900;
+    text-align: center;
+    letter-spacing: 4px;
+    text-shadow: 
+        -3px -3px 0 #3780b8,  3px -3px 0 #3780b8, -3px  3px 0 #3780b8,  3px  3px 0 #3780b8,
+        -3px  0px 0 #3780b8,  3px  0px 0 #3780b8,  0px -3px 0 #3780b8,  0px  3px 0 #3780b8,
+         6px  6px 0 rgba(46, 216, 173, 0.4);
+}
+
+.h1-bubble {
+    width: 55px;       
+    height: 55px;      
+    object-fit: cover; 
+    border-radius: 50%; 
+    border: 2px solid #ffffff;
+    box-shadow: 0 4px 10px rgba(46, 216, 173, 0.3);
+    animation: h1Heartbeat 1.5s infinite ease-in-out;
+}
+
+@keyframes h1Heartbeat {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.12); }
+    100% { transform: scale(1); }
+}
+
+/* ==========================================================================
+   4. 內文排版
+   ========================================================================== */
+.love-letter {
+    max-width: 900px;         
+    width: fit-content; 
+    margin: 0 auto 30px auto; 
+}
+
+p {
+    text-align: left;   
+    color: #4a4a4a;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+    
+    /* 橫線紙完美對齊 */
+    line-height: 36px;  
+    margin: 0 0 20px 0; 
+    background-image: linear-gradient(to bottom, transparent 35px, rgba(245, 102, 109, 0.25) 35px);
+    background-size: 100% 36px; 
+    padding-bottom: 1px; 
+}
+
+h2 {
+    text-align: right; 
+    margin: 30px 0 0 0; 
+    color: #b8379e; 
+    font-size: 20px;
+    font-weight: bold;
+    font-style: italic; 
+    letter-spacing: 1px;
+}
+
+/* ==========================================================================
+   5. 漂浮照片
+   ========================================================================== */
+.love-bubble-fixed {
+    position: fixed; 
+    z-index: 1; 
+    pointer-events: none;
+    top: var(--top, 20%);
+    left: var(--left, 10%);
+    animation: bubbleWander var(--speed, 25s) linear infinite;
+    animation-delay: var(--delay, 0s);
+}
+
+.love-bubble-fixed img {
+    width: 110px;
+    height: 110px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid rgba(255, 255, 255, 0.7);
+    box-shadow: 0 10px 25px rgba(33, 193, 241, 0.2), 0 0 15px rgba(255, 255, 255, 0.3);
+    opacity: 0.7;
+}
+
+@keyframes bubbleWander {
+    0% { transform: translate(0px, 0px) rotate(0deg); }
+    25% { transform: translate(25vw, 20vh) rotate(90deg); }
+    50% { transform: translate(-10vw, 35vh) rotate(180deg); }
+    75% { transform: translate(20vw, -15vh) rotate(270deg); }
+    100% { transform: translate(0px, 0px) rotate(360deg); }
+}
+
+/* ==========================================================================
+   6.播放器
+   ========================================================================== */
+.music-container {
+    margin: 15px auto 30px auto;
+    text-align: center;
+    z-index: 10;
+}
+
+#musicBtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    background-color: rgba(255, 255, 255, 0.4); 
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(46, 216, 173, 0.5); 
+    padding: 12px 30px;
+    border-radius: 40px; 
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(46, 216, 173, 0.08);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+#musicBtn .btn-text {
+    color: #3780b8; 
+    font-size: 14.5px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+#musicBtn:hover {
+    background-color: rgba(255, 255, 255, 0.85);
+    border-color: #2ed8ad;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(46, 216, 173, 0.2);
+}
+
+.audio-waves {
+    display: flex;
+    align-items: flex-end; 
+    gap: 3px;              
+    width: 20px;
+    height: 15px;          
+}
+
+.audio-waves span {
+    display: block;
+    width: 3px;            
+    height: 3px;           
+    background-color: #2ed8ad; 
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+#musicBtn.playing {
+    border-color: #21c1f1; 
+    box-shadow: 0 0 15px rgba(33, 193, 241, 0.3); 
+}
+
+#musicBtn.playing .btn-text {
+    color: #21c1f1; 
+}
+
+#musicBtn.playing .audio-waves span:nth-child(1) { animation: waveJump 0.6s ease-in-out infinite alternate; }
+#musicBtn.playing .audio-waves span:nth-child(2) { animation: waveJump 0.9s ease-in-out infinite alternate 0.15s; }
+#musicBtn.playing .audio-waves span:nth-child(3) { animation: waveJump 0.7s ease-in-out infinite alternate 0.3s; }
+#musicBtn.playing .audio-waves span:nth-child(4) { animation: waveJump 0.5s ease-in-out infinite alternate 0.05s; }
+
+@keyframes waveJump {
+    0% { height: 3px; }
+    100% { height: 15px; background-color: #21c1f1; } 
+}
