@@ -48,18 +48,18 @@
 
         <!-- 隱形文字大盒子：負責內文橫線紙置中、但開頭靠齊 -->
         <div class="love-letter">
-            <p>這段時間以來謝謝妳的陪伴，雖然今年不能用很好的禮物來犒勞妳。</p>
-            <p>也還和妳有很多次的爭執，總是有很多意見不合的時候。</p>
-            <p>是這些不斷不斷一起走來的路才讓我知道，原來我所想要的是什麼。</p>
-            <p>我在這一路走來的風景裡不斷地思考著，思考著我所想得到的未來。</p>
-            <p>所看見的都是希望未來能有妳的陪伴，希望未來能是你和我一起走下去。</p>
-            <p>愛你的溫柔，也愛妳的脾氣，因為這樣的一路走來，我看見妳強勢背後受的傷。</p>
-            <p>妳總是對我的懦弱發怒，總想為我站出來發聲，總想讓我體會到妳體會到的美好。</p>
-            <p>的確是妳讓我看到了不同的世界，而我也了解妳所說所作以往的那些事情。</p>
-            <p>行為我都有看到，也是妳所做的這些讓我意識到我所不足的點。</p>
-            <p>為了這段感情，也為了我自己，我會繼續成長。</p>
-            <p>之後的未來我會和妳一起站在前面去看妳想看的世界，做我發自內心想過的生活。</p>
-            <p>一起笑一起嘴賤，彼此一起過著有著很多情緒的生活。</p>
+            <p><strong>這</strong><em>段時間以來謝謝妳的陪伴,雖然今年不能用很好的禮物來犒勞妳。</em></p>
+            <p><strong>也</strong><em>還和妳有很多次的爭執,總是有很多意見不合的時候。</em></p>
+            <p><strong>是</strong><em>這些不斷不斷一起走來的路才讓我知道,原來我所想要的是什麼。</em></p>
+            <p><strong>我</strong><em>在這一路走來的風景裡不斷地思考著,思考著我所想得到的未來。</em></p>
+            <p><strong>所</strong><em>看見的都是希望未來能有妳的陪伴,希望未來能是你和我一起走下去。</em></p>
+            <p><strong>愛</strong><em>你的溫柔，也愛妳的脾氣，一路走來,我看見妳強勢背後受的傷。</em></p>
+            <p><strong>妳</strong><em>總是對我的懦弱發怒，總想為我站出來發聲,總想讓我體會到妳體會到的美好。</em></p>
+            <p><strong>的</strong><em>確是妳讓我看到了不同的世界,而我也了解妳所說所作以往的那些事情。</em></p>
+            <p><strong>行</strong><em>為我都有看到,也是妳所做的這些讓我意識到我所不足的點。</em></p>
+            <p><strong>為</strong><em>了這段感情，也為了我自己,我會繼續成長。</em></p>
+            <p><strong>之</strong><em>後的未來我會和妳一起站在前面去看妳想看的世界,做我發自內心想過的生活。</em></p>
+            <p><strong>一</strong><em>起笑一起嘴賤,彼此一起過著有著很多情緒的生活。</em></p>
         </div>
 
         <!-- 右下角手寫感署名 -->
@@ -76,7 +76,7 @@
     // 1. 填寫您的歌詞時間軸清單（前面是秒數，後面是那秒要唱的歌詞）
     // 💡 實戰小技巧：您可以聽一下您的 123.mp3，把正確的秒數和情歌歌詞改成您想要的！
     const lyricsTimeline = [
-        { time: 1, text:"間奏" },
+        { time: 1, text:"--------間奏--------" },
         { time: 4, text: "sa bi shi sa wa kyo ki da<br>我的寂寞是股戾氣" },
         { time: 9, text: "hi to wo ki zu tsu ke te shi ma u<br>把人都傷害盡了" },
         { time: 13, text: "so re ni ki du ke na ku na ru<br>然而我卻毫不自知" },
@@ -94,23 +94,23 @@
         { time: 71, text: "de ki te ru ka na <br>成功的人呢？" },
         { time: 77, text: "do u ka na do u ka na <br>你覺得呢？你覺得呢？" },
         { time: 82, text: "sa gu ri na ga ra ma ru tsu ke <br>我一邊尋找一面打上了分數" },
-        { time: 87, text:"間奏" },
+        { time: 87, text:"--------間奏--------" },
         { time: 89, text: "ya sa shi sa wa tsu mi ki da <br>溫柔如同積木一般" },
         { time: 96, text: "tsu mi a ge re ba ta ka ku na ru <br>越是累積便疊的越高" },
         { time: 100, text: "da ke re do mo ro ku mo ni na ru <br>但疊的越高也就越脆弱" },
         { time: 104, text: "ta da shi sa wa se i gi da <br>正確就是正義" },
         { time: 109, text: "da ke do hi to wa fu mi ha zu su <br>若有人脫離了正軌" },
         { time: 113, text: "so re wo su ku u no wa na ni <br>究竟誰會去拯救他呢？" },
-        { time: 120, text:"間奏" },
-        { time: 140, text: "bo ku ra wa do u ka na <br>我們是怎麼樣的呢" },
+        { time: 120, text:"--------間奏--------" },
+        { time: 139, text: "bo ku ra wa do u ka na <br>我們是怎麼樣的呢" },
         { time: 143, text: "u ma i ko to re n a i wo <br>做得到高明的戀愛嗎？" },
         { time: 152, text: "do u ka na do u ka na <br>你覺得呢？你覺得呢？" },
         { time: 158, text: "ko ta e mo na ku ma ru tsu ke <br>不知解答便打上了圈" },
         { time: 163, text: "bo ku ra wa do u ka na <br>我們是怎樣的呢" },
-        { time: 167, text: "fu ta ri de ji n se i wo ya re ru ka na <br>能夠擁抱彼此活下去嗎" },
+        { time: 167, text: "futa ri de nji sei wo ya re ru kana<br>能夠擁抱彼此活下去嗎" },
         { time: 176, text: "do u ka na do u ka na <br>你覺得呢？你覺得呢？" },
         { time: 182, text: "ne ga i wo ko me ma ru tsu ke <br>我將願望放進圈號之中" },
-        { time: 197, text: "ji n se i wa te n ki da <br>人生宛如天氣一般" },
+        { time: 196, text: "ji n se i wa te n ki da <br>人生宛如天氣一般" },
         { time: 201, text: "ha re ta ri fu ra re ta ri su ru <br>時而晴朗 時而陣雨" },
         { time: 206, text: "do chi ra mo o ko ri u ru <br>無論如何兩者都將到來" },
         { time: 209, text: "do u ka na ka sa na ra <br>若有傘會是如何呢" },
@@ -135,7 +135,7 @@
         
         if (music.paused) {
             music.play();                 
-            btnText.innerHTML = "情書電台播放中 🪐"; 
+            btnText.innerHTML = "情人節快樂~~"; 
             btn.classList.add('playing');  
         } else {
             music.pause();                
