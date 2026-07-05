@@ -1,0 +1,400 @@
+/* ==========================================================================
+   1. 全網頁底層：滿版大圖背景 ＋ 高飽和度加深遮罩 🖼️
+   ========================================================================== */
+body {
+    background-image: 
+        linear-gradient(rgba(13, 27, 42, 0.65), rgba(74, 13, 46, 0.7)), 
+        url("../photo.jpg/bg.jpg.jpg"); 
+    background-repeat: no-repeat; 
+    background-attachment: fixed; 
+    background-size: cover; 
+    background-position: center center; 
+    
+    font-family: "Microsoft JhengHei", sans-serif;
+    margin: 0; 
+    
+    /* 🛠️ 手機/電腦自適應超強護城河：下方預留 150px，確保最後一行字與署名絕對浮在歌詞上方 */
+    padding: 50px 10px 170px 10px; 
+    
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: flex-start; /* 讓長內容工整從最頂端往下排 */
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+/* ==========================================================================
+   2. 告白卡片容器 (.love-card) 💌
+   ========================================================================== */
+.love-card {
+    background-color: #fffaf0; /* 質感象牙白 */
+    border: 5px double #f5666d; /* 粉紅雙實線 */
+    border-radius: 8px; 
+    box-shadow: inset 0 0 15px rgba(245, 102, 109, 0.1), 0 4px 12px rgba(0,0,0,0.05);
+    animation: letterFloat 4s ease-in-out infinite alternate;
+    
+    /* 大器展開：配合 1600px 超大滿版設定，手機時自動延展至 96% */
+    max-width: 1600px;          
+    width: 96%; 
+    
+    padding: 40px 24px; 
+    margin: 0 auto; 
+    box-sizing: border-box; 
+    
+    /* 🛠️ 3D穿梭核心：設定相對定位與圖層 5，讓照片泡泡（10）能成功壓在前方蓋過文字穿梭 */
+    position: relative;
+    z-index: 5; 
+}
+
+@keyframes letterFloat {
+    0% { transform: translateY(0px) scale(1); }
+    100% { transform: translateY(-5px) scale(1.01); }
+}
+
+/* ==========================================================================
+   3. 標題排版：美式硬調粗框標題 + 兩側防榨扁大頭貼 🌹
+   ========================================================================== */
+h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    gap: 12px;               
+    margin: 0 0 25px 0;
+    width: 100%;
+}
+
+.h1-text {
+    color: #ffffff; 
+    font-size: 32px; 
+    font-weight: 900;
+    text-align: center;
+    letter-spacing: 2px;
+    text-shadow: 
+        -3px -3px 0 #3780b8,  3px -3px 0 #3780b8, -3px  3px 0 #3780b8,  3px  3px 0 #3780b8,
+        -3px  0px 0 #3780b8,  3px  0px 0 #3780b8,  0px -3px 0 #3780b8,  0px  3px 0 #3780b8,
+         6px  6px 0 rgba(46, 216, 173, 0.4);
+}
+
+.h1-bubble {
+    width: 48px;       
+    height: 48px;      
+    object-fit: cover; 
+    border-radius: 50%; 
+    flex-shrink: 0; /* 鋼鐵不變橢圓 */
+    border: 2px solid #ffffff;
+    box-shadow: 0 4px 10px rgba(46, 216, 173, 0.3);
+    animation: h1Heartbeat 1.5s infinite ease-in-out;
+}
+
+@keyframes h1Heartbeat {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.12); }
+    100% { transform: scale(1); }
+}
+
+/* ==========================================================================
+   4. 內文排版：鋼鐵藏頭詩專用 ── 懸掛階梯縮進版（還原您原本的字體設定，刪除亂加粗體/斜體） 📝
+   ========================================================================== */
+.love-letter {
+    max-width: 520px;          
+    width: 100%;               
+    margin: 0 auto 30px auto;  
+}
+
+p {
+    text-align: left;   
+    color: #4a4a4a;
+    font-size: 16px;       /* 🛠️ 還原：回到最乾淨、原本舒適的 16 像素大小 */
+    font-weight: normal;   /* 🛠️ 還原：刪除我亂加的粗體，恢復您最自然的字體粗細 */
+    font-style: normal;    /* 🛠️ 還原：刪除我亂加的斜體，回歸最工整的詩集外觀 */
+    letter-spacing: 0.5px;
+    line-height: 1.8;  
+    margin: 0 0 24px 0; 
+    padding: 0 12px;
+    box-sizing: border-box;
+
+    /* 大師級懸掛階梯縮進黑魔法：字首死死靠左垂直對齊，句子太長在手機換行時會自動向右退縮 */
+    padding-left: 2em; 
+    text-indent: -2em; 
+    
+    border-bottom: 1px dashed rgba(245, 102, 109, 0.25);
+    padding-bottom: 8px; 
+}
+
+h2 {
+    text-align: right; 
+    margin: 30px 0 0 0; 
+    color: #b8379e; 
+    font-size: 20px;
+    font-weight: bold;
+    font-style: italic; 
+    letter-spacing: 1px;
+}
+
+/* ==========================================================================
+   5. 背景全範圍四處漂浮照片泡泡群 🫧
+   ========================================================================== */
+.love-bubble-fixed {
+    position: fixed; 
+    pointer-events: none; 
+    z-index: 10; /* 前景圖層：浮在文字前面穿梭遊走 */
+    top: var(--top, 20%);
+    left: var(--left, 10%);
+    animation: bubbleWander var(--speed, 25s) linear infinite;
+    animation-delay: var(--delay, 0s);
+}
+
+.love-bubble-fixed img {
+    width: 110px; 
+    height: 110px;
+    object-fit: cover; 
+    border-radius: 50%; 
+    flex-shrink: 0; 
+    border: 3px solid rgba(255, 255, 255, 0.7);
+    box-shadow: 0 10px 25px rgba(33, 193, 241, 0.2), 0 0 15px rgba(255, 255, 255, 0.3);
+    opacity: 0.7;
+}
+
+@keyframes bubbleWander {
+    0% { transform: translate(0px, 0px) rotate(0deg); }
+    25% { transform: translate(25vw, 20vh) rotate(90deg); }
+    50% { transform: translate(-10vw, 35vh) rotate(180deg); }
+    75% { transform: translate(20vw, -15vh) rotate(270deg); }
+    100% { transform: translate(0px, 0px) rotate(360deg); }
+}
+
+/* ==========================================================================
+   6. 現代極簡音波播放器 ＋ 🛠️ 完美修復手機版防裁切懸浮選歌原因小視窗 🪐
+   ========================================================================== */
+.music-container {
+    margin: 15px auto 30px auto;
+    text-align: center;
+    z-index: 12; 
+}
+
+#musicBtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    background-color: rgba(255, 255, 255, 0.4); 
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(46, 216, 173, 0.5); 
+    padding: 12px 30px;
+    border-radius: 40px; 
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(46, 216, 173, 0.08);
+    position: relative; 
+    transition: all 0.3s ease;
+}
+
+#musicBtn .btn-text {
+    color: #3780b8; 
+    font-size: 14.5px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+#musicBtn:hover {
+    background-color: rgba(255, 255, 255, 0.85);
+    border-color: #2ed8ad;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(46, 216, 173, 0.2);
+}
+
+/* 懸浮選歌理由小視窗（已加入手機防裁切防線） */
+#musicBtn::after {
+    content: attr(data-reason); 
+    position: absolute; 
+    bottom: 130%; 
+    left: 50%;
+    transform: translateX(-50%) translateY(10px); 
+    
+    background-color: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    color: #ffffff;      
+    font-size: 13px;     
+    font-weight: normal;
+    line-height: 1.6;
+    padding: 10px 16px;
+    border-radius: 12px; 
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    
+    /* 🛠️ 手機防裁切核心：電腦版維持 240px，手機上限制在 80vw 內，並自動溫柔居中換行！ */
+    width: 240px;
+    max-width: 80vw;
+    white-space: normal;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+#musicBtn:hover::after {
+    opacity: 1; 
+    transform: translateX(-50%) translateY(0px); 
+}
+
+/* 音波細線 */
+.audio-waves { display: flex; align-items: flex-end; gap: 3px; width: 20px; height: 15px; }
+.audio-waves span { display: block; width: 3px; height: 3px; background-color: #2ed8ad; border-radius: 2px; transition: all 0.3s ease; }
+#musicBtn.playing { border-color: #21c1f1; box-shadow: 0 0 15px rgba(33, 193, 241, 0.3); }
+#musicBtn.playing .btn-text { color: #21c1f1; }
+#musicBtn.playing .audio-waves span:nth-child(1) { animation: waveJump 0.6s ease-in-out infinite alternate; }
+#musicBtn.playing .audio-waves span:nth-child(2) { animation: waveJump 0.9s ease-in-out infinite alternate 0.15s; }
+#musicBtn.playing .audio-waves span:nth-child(3) { animation: waveJump 0.7s ease-in-out infinite alternate 0.3s; }
+#musicBtn.playing .audio-waves span:nth-child(4) { animation: waveJump 0.5s ease-in-out infinite alternate 0.05s; }
+@keyframes waveJump { 0% { height: 3px; } 100% { height: 15px; background-color: #21c1f1; } }
+
+/* ==========================================================================
+   11. 精緻雙行滾動歌詞面板樣式（中日雙行完全分開 ── 繁體中文作用註記版） 🎤
+   ========================================================================== */
+
+/* ── 1. 外層毛玻璃視窗：負責把歌詞固定在螢幕底端，並限制只能看見單組中日文 ── */
+.lyrics-view-window {
+    position: fixed;            /* 作用：鋼鐵固定定位，讓歌詞永遠定格在螢幕底部不隨滑動而消失 */
+    bottom: 25px;               /* 作用：設定視窗距離手機/電腦螢幕最底端的垂直高度為 25 像素 */
+    left: 50%;                  /* 作用：配合下面的 transform，讓固定定位的元件在全螢幕完美水平置中 */
+    transform: translateX(-50%);/* 作用：向左反向位移自身寬度的一半，達成絕對完美的幾何幾何居中 */
+    
+    z-index: 8;                 /* 作用：層級設定。浮在大卡片文字(5)前面，但待在前景亂飄照片(10)後面，達成互不擋字 */
+    pointer-events: none;       /* 作用：滑鼠/手指穿透防線。就算照片泡泡飄過來壓在上面，妮妮點擊螢幕也絕對不卡住 */
+
+    height: 90px;               /* 作用：視窗總高度限制。剛好露出當前這組日文+中文，高度鎖死，絕對不往上溢出擋字 */
+    max-width: 85%;             /* 作用：手機版防線。限制最大寬度只能佔手機螢幕的 85%，防止小螢幕時字體頂爆左右邊緣 */
+    width: 440px;               /* 作用：電腦版寬度。在寬大的電腦螢幕上，維持最舒服、好讀的 440 像素大器寬度 */
+    overflow: hidden;           /* 作用：隱形斗篷。強行把除了當前歌詞以外、其他還沒唱到的所有歌詞全部隱藏起來 */
+    
+    background-color: rgba(0, 0, 0, 0.25); /* 作用：極致清透黑底。25% 的極淡半透明黑，讓卡片看起來非常輕薄 */
+    backdrop-filter: blur(8px);            /* 作用：現代毛玻璃特效。讓透過去的背景大圖和漂浮泡泡自動產生高質感霧面模糊 */
+    -webkit-backdrop-filter: blur(8px);    /* 作用：蘋果 Safari 瀏覽器專屬相容性毛玻璃指令，確保 iPhone 打開不破圖 */
+    
+    padding: 10px 20px;         /* 作用：內襯留白。上下預留 10 像素、左右預留 20 像素，讓歌詞膠囊有舒服的呼吸感 */
+    border-radius: 18px;        /* 作用：膠囊圓角。幫毛玻璃外框的四個角落切出極致精美的 18 像素流線圓角 */
+    border: 1px solid rgba(255, 255, 255, 0.25); /* 作用：高光邊框。一條 25% 透明度的純白極細細線，呈現精品緞帶質感 */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* 作用：懸浮陰影。往下方投射一層淡淡的立體暗影，讓小視窗像懸浮在空中 */
+    box-sizing: border-box;     /* 作用：鋼鐵尺寸防線。命令瀏覽器把 padding 和邊框厚度鎖在 90px 之內，寬度絕不暴走 */
+} /* 作用註記：此段落專門負責歌詞控制面板的「毛玻璃外殼外觀與固定定位」 */
+
+
+/* ── 2. 內層滾動電梯：負責裝載所有中日歌詞，並聽從 JavaScript 指令做垂直平移 ── */
+.lyrics-scroll-box {
+    display: flex;              /* 作用：彈性盒排版。讓裡面的所有歌詞行自動變成垂直向下排列 */
+    flex-direction: column;     /* 作用：命令子物件一條一條、像排隊一樣規律地由上往下垂直堆疊 */
+    align-items: center;        /* 作用：命令每一行歌詞在垂直電梯內部，左右通通自動水平置中 */
+    position: relative;         /* 作用：相對定位。讓內層的歌詞大盒子可以作為等一下垂直滾動滑行的基裝舞台 */
+    top: 0px;                   /* 作用：初始垂直高度歸零。讓第一句歌詞在一開場時，就端端正正卡在最中央 */
+    
+    /* 轉場物理曲線 */
+    transition: transform 0.45s cubic-bezier(0.165, 0.84, 0.44, 1); 
+    /* 作用：絲滑滾動靈魂。當 JavaScript 改變它的平移高度時，產生 0.45 秒、帶有高階漸進轉速的垂直滑行效果 */
+} /* 作用註記：此段落專門負責控制歌詞在更換時的「垂直電梯平滑滑行速度與方向」 */
+
+
+/* ── 3. 每一組獨立的中日歌詞行：預設還沒唱到的狀態（灰色、低調、不搶戲） ── */
+.lyrics-line {
+    height: 72px;               /* 作用：核心尺寸。每一組中日歌詞死死固定在 72 像素高，與 JavaScript 的 72 乘法完全對齊 */
+    line-height: 26px;          /* 作用：行高優化。日文和中文內部的字距行高為 26 像素，確保兩行字貼緊靠攏、不散開 */
+    padding-top: 10px;          /* 作用：頂部微調。日文上方預留 10 像素，讓整組中日文自然、工整地垂直居中在 72px 方塊內 */
+    box-sizing: border-box;     /* 作用：尺寸鎖定。確保 padding 留白不會把 72px 的單行高度撐破，防止滾動時走鐘 */
+    
+    color: rgba(255, 255, 255, 0.35); /* 作用：未唱字體顏色。35% 的淡淡透明白（灰色），當作綠葉隱藏在毛玻璃背景裡 */
+    font-size: 14.5px;          /* 作用：未唱字體大小。精緻小巧的 14.5 像素，給正在唱的主角歌詞騰出視覺空間 */
+    letter-spacing: 0.5px;      /* 作用：字距微調。中日文字與字之間拉開 0.5 像素的精細空隙，閱讀起來最舒適不擁擠 */
+    text-align: center;         /* 作用：文字對齊。命令每一行歌詞的中文字與日文字，通通在小視窗裡水平居中對齊 */
+    width: 100%;                /* 作用：寬度滿版。讓每一行歌詞的感應範圍佔滿 100% 寬度，確保置中計算絕對不偏心 */
+    
+    transition: all 0.3s ease;  /* 作用：變色轉場。當這行歌詞被唱到、要變色時，字體會產生 0.3 秒的柔和漸變轉化 */
+} /* 作用註記：此段落專門負責定義全首歌所有歌詞的「預設未唱到灰色字體與中日文行高排版」 */
+
+
+/* ── 4. 當前正在唱的高亮歌詞：負責在音樂秒數到時，觸發瞬間放大與水藍色霓虹發光 ── */
+.lyrics-line.active {
+    color: #ffffff;             /* 作用：高亮字體顏色。唱到的那一瞬間，字體立刻換成 100% 飽滿、高對比的純白色 */
+    font-size: 15.5px;          /* 作用：高亮字體放大。體積微微放大一階，產生極強的主唱存在感與視覺層次感 */
+    font-weight: bold;          /* 作用：粗體鎖定。強行加粗字體，讓日文和中文在全螢幕背景大圖前都極度清晰明顯 */
+    
+    /* 雙層霓虹發光黑魔法 */
+    text-shadow: 0 0 12px #21c1f1, 0 0 4px #21c1f1; 
+    /* 作用：霓虹微光。幫現在唱到的中日文，在背後渲染出兩層深淺交織的水藍色羽化光暈，質感直接逼近精品 MV！ */
+} /* 作用註記：此段落專門負責當音樂秒數精準對時到時，當前歌詞的「純白加粗與水藍色發光震撼特效」 */
+/* ==========================================================================
+   10. 角落藤蔓邊框纏繞與搖曳動態設計 🌿
+   ========================================================================== */
+
+/* 1. 基礎設定：四張藤蔓圖共用的定位與大小衣服 */
+.card-vine {
+    position: absolute;  /* 核心：絕對定位，擺脫文字干擾，以 love-card 為舞台 */
+    width: 75px;         /* 🛠️ 您可以自由修改這個數字，調整藤蔓的大小 */
+    height: auto;        /* 等比例縮放不變形 */
+    z-index: 4;          /* 疊加層級：浮在卡片底色之上，但略低於 h1 標題 */
+    opacity: 0.85;       /* 帶點微透明，讓它隱隱約約透出底層的象牙白卡片 */
+    pointer-events: none;/* 擺脫滑鼠干擾 */
+
+       /* 動畫靈魂：讓四片藤蔓隨風優雅地微幅擺動，充滿生命力 */
+    animation: vineBreeze 4s ease-in-out infinite alternate;
+}
+/* 2. 🛠️ 精準纏繞座標與旋轉角度（利用 transform: rotate 調整生長方向） */
+
+/* 左上角藤蔓：死死黏在左上角交界處 */
+.card-vine.top-left {
+    top: -5px;
+    left: -30px;
+    transform: rotate(0deg); /* 保持原方向延伸 */
+    transform-origin: left top;
+}
+
+/* 右上角藤蔓：黏在右上角，並水平翻轉 90 度往下纏繞 */
+.card-vine.top-right {
+    top: -5px;
+    right: -30px;
+    transform: rotate(0deg); /* 旋轉並鏡像，讓葉子往中間長 */
+    transform-origin: right top;
+}
+/* ==========================================================================
+   🚨 9. 商業級 RWD 行動裝置極致適配防線（終極無滾輪不擋字版）
+   ========================================================================== */
+@media (max-width: 600px) {
+    /* 🛠️ 修正 1：加大手機下方的護城河留白，高高把卡片往上推，署名絕對不被歌詞擋到！ */
+    body { 
+        padding: 20px 4px 170px 4px !important; 
+    }
+    
+    /* 讓卡片在手機上撐大延展，精緻不破圖 */
+    .love-card { 
+        width: 98%; 
+        padding: 30px 16px; 
+    }
+    
+    /* 標題與防榨扁大頭貼 */
+    .h1-text { font-size: 24px; }
+    .h1-bubble { width: 42px; height: 42px; }
+    
+    /* 內文文字解除限制，大器平鋪 */
+    .love-letter { max-width: 100%; }
+    
+    /* --------------------------------------------------------------------------
+       🔥 關鍵修正 2：徹底消滅手機左右滾輪、防歌詞擋住 h2 署名大絕招
+       -------------------------------------------------------------------------- */
+    .lyrics-view-window {
+        /* 鋼鐵鐵律：在手機版，不准使用 440px 這種死板寬度！ */
+        /* 改成寬度佔螢幕的 92%，給左右兩側各留 4% 的安全安全邊距，左右滾輪瞬間永久蒸發！ */
+        width: 92% !important; 
+        
+        /* 縮小歌詞膠囊的上下內襯，讓它在手機上更扁、更精緻，把更多空間留給上面的署名 */
+        padding: 6px 12px !important; 
+        height: 84px !important; 
+        bottom: 15px !important; /* 稍微往下貼近手機底端 */
+    }
+
+    
+    .lyrics-line.active {
+        font-size: 14.5px !important;
+    }
+}

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="是為了慶祝我跟女朋友要一起過的的七夕">
+    <title>許馨妮七夕快樂</title>
+    <!-- 正確連結到您的 CSS 檔案 -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- 背景多照片漂浮泡泡群 -->
+    <div class="love-bubble-fixed" style="--speed: 22s; --delay: 0s; --top: 15%; --left: 8%;">
+        <img src="photo.jpg/1155.jpg" alt="甜蜜合照1">
+    </div>
+    <div class="love-bubble-fixed" style="--speed: 30s; --delay: -4s; --top: 55%; --left: 75%;">
+        <img src="photo.jpg/1234.jpg" alt="甜蜜合照2">
+    </div>
+    <!-- 隱藏的音樂播放器 -->
+    <audio id="bgMusic" src="music.mp3/123.mp3" loop></audio>
+
+    <!-- 🛠️ 現代極簡音波播放器（放在大盒子外面最頂端，這樣畫面才不會打架） -->
+    <div class="music-container">
+        <button id="musicBtn" onclick="toggleMusic()" data-reason="我想選這首歌是因為我想謝謝你愛著這樣不完美的我">
+            <div class="audio-waves">
+                 <span></span>
+                 <span></span>
+                 <span></span>
+                 <span></span>
+            </div>
+                <span class="btn-text">點我點我</span>
+                </button>
+    </div>
+    <!-- 全包覆式明信片大盒子 -->
+    <div class="love-card">
+        
+          <img src="photo.jpg/vine.png.png" alt="左上藤蔓" class="card-vine top-left">
+        <img src="photo.jpg/vine.png.png" alt="右上藤蔓" class="card-vine top-right">
+
+
+        <!-- 標題與兩側跳動的大頭貼 -->
+        <h1>  
+            <img src="photo.jpg/134.jpg" alt="妮妮左大頭貼" class="h1-bubble">
+            <span class="h1-text">妮妮七夕快樂</span>
+            <img src="photo.jpg/134.jpg" alt="妮妮右大頭貼" class="h1-bubble">
+        </h1>
+
+        <!-- 隱形文字大盒子：負責內文橫線紙置中、但開頭靠齊 -->
+        <div class="love-letter">
+            <p><strong>這</strong><em>段時間以來謝謝妳的陪伴,雖然今年不能用很好的禮物來犒勞妳。</em></p>
+            <p><strong>也</strong><em>還和妳有很多次的爭執,總是有很多意見不合的時候。</em></p>
+            <p><strong>是</strong><em>這些不斷不斷一起走來的路才讓我知道,原來我所想要的是什麼。</em></p>
+            <p><strong>我</strong><em>在這一路走來的風景裡不斷地思考著,思考著我所想得到的未來。</em></p>
+            <p><strong>所</strong><em>看見的都是希望未來能有妳的陪伴,希望未來能是你和我一起走下去。</em></p>
+            <p><strong>愛</strong><em>你的溫柔，也愛妳的脾氣，一路走來,我看見妳強勢背後受的傷。</em></p>
+            <p><strong>妳</strong><em>總是對我的懦弱發怒，總想為我站出來發聲,總想讓我體會到妳體會到的美好。</em></p>
+            <p><strong>的</strong><em>確是妳讓我看到了不同的世界,而我也了解妳所說所作以往的那些事情。</em></p>
+            <p><strong>行</strong><em>為我都有看到,也是妳所做的這些讓我意識到我所不足的點。</em></p>
+            <p><strong>為</strong><em>了這段感情，也為了我自己,我會繼續成長。</em></p>
+            <p><strong>之</strong><em>後的未來我會和妳一起站在前面去看妳想看的世界,做我發自內心想過的生活。</em></p>
+            <p><strong>一</strong><em>起笑一起嘴賤,彼此一起過著有著很多情緒的生活。</em></p>
+        </div>
+
+        <!-- 右下角手寫感署名 -->
+        <h2>情人節快樂</h2>
+        
+     </div>
+    <!-- 🛠️ 關鍵修正：升級為雙層電梯結構。外層負責固定在底部，內層負責裝滿所有歌詞並往上推 -->
+    <div class="lyrics-view-window">
+        <div id="lyricsSubtitle" class="lyrics-scroll-box">
+            <!-- 💡 這裡面現在不用寫任何字，等一下 JavaScript 會全自動把所有歌詞分段排好塞進來！ -->
+        </div>
+    </div>
+    <script>
+    // 1. 填寫您的歌詞時間軸清單（前面是秒數，後面是那秒要唱的歌詞）
+    // 💡 實戰小技巧：您可以聽一下您的 123.mp3，把正確的秒數和情歌歌詞改成您想要的！
+    const lyricsTimeline = [
+        { time: 1, text:"--------間奏--------" },
+        { time: 4, text: "sa bi shi sa wa kyo ki da<br>我的寂寞是股戾氣" },
+        { time: 9, text: "hi to wo ki zu tsu ke te shi ma u<br>把人都傷害盡了" },
+        { time: 13, text: "so re ni ki du ke na ku na ru<br>然而我卻毫不自知" },
+        { time: 16, text: "i to o shi sa wa byo u ki da <br>愛情是種疾病" },
+        { time: 22, text: "mu ne ga ku ru shi ku na ru yo <br>內心痛苦不已" },
+        { time: 25, text: "na o shi ka ta wa na i n da <br>我卻沒有沒有治癒的方法" },
+        { time: 34, text: "ko no hi bi wa ki se ki da <br>些日子宛如奇蹟一般" },
+        { time: 39, text: "de mo na ni ka ga ta ri na i <br>似乎還有些稍嫌不足" },
+        { time: 43, text: "u ma ra na i ku u ra n <br>有著無法填補的空白" },
+        { time: 46, text: "ki mi wa fu shi gi da <br>你是個不可思議的存在" },
+        { time: 51, text: "so no so n za i ga bo ku wo <br>你這般的存在使我" },
+        { time: 55, text: "tsu yo ku mo yo wa ku mo su ru <br>變得時而堅強 時而脆弱" },
+        { time: 63, text: "bo ku ra wa do u ka na <br>你覺得我們是怎麼樣的呢" },
+        { time: 67, text: "u ma i ko to ni n ge n wo <br>是否有成為了一個" },
+        { time: 71, text: "de ki te ru ka na <br>成功的人呢？" },
+        { time: 77, text: "do u ka na do u ka na <br>你覺得呢？你覺得呢？" },
+        { time: 82, text: "sa gu ri na ga ra ma ru tsu ke <br>我一邊尋找一面打上了分數" },
+        { time: 87, text:"--------間奏--------" },
+        { time: 89, text: "ya sa shi sa wa tsu mi ki da <br>溫柔如同積木一般" },
+        { time: 96, text: "tsu mi a ge re ba ta ka ku na ru <br>越是累積便疊的越高" },
+        { time: 100, text: "da ke re do mo ro ku mo ni na ru <br>但疊的越高也就越脆弱" },
+        { time: 104, text: "ta da shi sa wa se i gi da <br>正確就是正義" },
+        { time: 109, text: "da ke do hi to wa fu mi ha zu su <br>若有人脫離了正軌" },
+        { time: 113, text: "so re wo su ku u no wa na ni <br>究竟誰會去拯救他呢？" },
+        { time: 120, text:"--------間奏--------" },
+        { time: 139, text: "bo ku ra wa do u ka na <br>我們是怎麼樣的呢" },
+        { time: 143, text: "u ma i ko to re n a i wo <br>做得到高明的戀愛嗎？" },
+        { time: 152, text: "do u ka na do u ka na <br>你覺得呢？你覺得呢？" },
+        { time: 158, text: "ko ta e mo na ku ma ru tsu ke <br>不知解答便打上了圈" },
+        { time: 163, text: "bo ku ra wa do u ka na <br>我們是怎樣的呢" },
+        { time: 167, text: "futa ri de nji sei wo ya re ru kana<br>能夠擁抱彼此活下去嗎" },
+        { time: 176, text: "do u ka na do u ka na <br>你覺得呢？你覺得呢？" },
+        { time: 182, text: "ne ga i wo ko me ma ru tsu ke <br>我將願望放進圈號之中" },
+        { time: 196, text: "ji n se i wa te n ki da <br>人生宛如天氣一般" },
+        { time: 201, text: "ha re ta ri fu ra re ta ri su ru <br>時而晴朗 時而陣雨" },
+        { time: 206, text: "do chi ra mo o ko ri u ru <br>無論如何兩者都將到來" },
+        { time: 209, text: "do u ka na ka sa na ra <br>若有傘會是如何呢" },
+        { time: 214, text: "bo ku ga mo tte o ku ka ra <br>我會拿起那把雨傘" },
+        { time: 218, text: "fu ta ri de hi to tsu na ro u <br>讓我們兩人合而為一吧" }
+    ];
+// 初始化：自動把所有歌詞分段印在網頁上
+    const lyricsBox = document.getElementById('lyricsSubtitle');
+    lyricsTimeline.forEach((item, index) => {
+        let p = document.createElement('div');
+        p.className = 'lyrics-line';
+        p.id = 'line-' + index;
+        p.innerHTML = item.text;
+        lyricsBox.appendChild(p);
+    });
+
+    // 控制音樂按鈕點擊大腦
+    function toggleMusic() {
+        var music = document.getElementById('bgMusic');
+        var btn = document.getElementById('musicBtn');
+        var btnText = btn.querySelector('.btn-text'); 
+        
+        if (music.paused) {
+            music.play();                 
+            btnText.innerHTML = "情人節快樂~~"; 
+            btn.classList.add('playing');  
+        } else {
+            music.pause();                
+            btnText.innerHTML = "點我點我";
+            btn.classList.remove('playing'); 
+        }
+    }
+
+ // 🛠️ 核心監聽：音樂播到哪，歌詞亮到哪、電梯老實推一階
+    var musicPlayer = document.getElementById('bgMusic');
+    let currentLineIndex = -1; 
+
+    musicPlayer.addEventListener('timeupdate', function() {
+        let currentTime = musicPlayer.currentTime;
+        
+        // 1. 算出目前時間該亮起第幾行中日歌詞
+        let activeIndex = lyricsTimeline.reduce((prevIndex, current, index) => {
+            return (currentTime >= current.time) ? index : prevIndex;
+        }, 0);
+
+        // 2. 邏輯觸發：如果唱到了「新的一行」
+        if (activeIndex !== currentLineIndex) {
+            currentLineIndex = activeIndex;
+            
+            // A. 先把網頁上所有歌詞的「高亮衣服」脫掉
+            document.querySelectorAll('.lyrics-line').forEach(line => line.classList.remove('active'));
+            
+            // B. 🛠️ 終極修正：只幫現在唱到的這「唯一一組中日歌詞」穿上高亮發光衣服！不拉下一句進來！
+            let currentLine = document.getElementById('line-' + currentLineIndex);
+            if (currentLine) {
+                currentLine.classList.add('active');
+            }
+            
+            // C. 🛠️ 終極修正：每換一句，電梯就老老實實、不多不少地只向上升起「1 倍的 72 像素」！
+            /* 這樣這組亮起來的日文+中文，就會百分之百像量過一樣，永遠端端正正卡在毛玻璃視窗的正中央，絕不上溢擋字！ */
+            let offset = currentLineIndex * 72; 
+            lyricsBox.style.transform = `translateY(-${offset}px)`;
+        }
+    });
+    </script>
+</body>
+</html>
